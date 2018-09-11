@@ -6,6 +6,7 @@ sudo apt-get update
 sudo apt-get install -y git
 sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 sudo apt-get install -y libpq-dev
+sudo apt-get install -y nodejs
 
 git clone git://github.com/sstephenson/rbenv.git .rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
