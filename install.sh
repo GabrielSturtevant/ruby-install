@@ -1,4 +1,4 @@
-#!/bin/bash -i
+#!/bin/bash
 RUBY_VERSION='2.5.1'
 
 pushd $HOME > /dev/null
@@ -30,10 +30,12 @@ git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.c
 
 pushd $HOME/services.connectors.oracle/Backend
 
-. $HOME/.bashrc
+/bin/bash -i
 
 gem install bundler
 bundle install
+
+exit
 
 popd
 pwd
