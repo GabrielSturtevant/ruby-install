@@ -30,9 +30,10 @@ git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.c
 
 pushd $HOME/service.connectors.oracle
 
+. $HOME/.bashrc
+
 gem install bundler
 bundle install
 
-. $HOME/.bashrc
 popd
 pwd
