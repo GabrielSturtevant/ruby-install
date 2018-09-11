@@ -28,9 +28,9 @@ git config --global http.sslVerify false
 # TODO(Kirk): Replace this with production link
 git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.connectors.oracle.git
 
-pushd $HOME/service.connectors.oracle
+pushd $HOME/services.connectors.oracle/Backend
 
-. $HOME/.bashrc
+bash
 
 gem install bundler
 bundle install
