@@ -31,11 +31,12 @@ RUBY_VERSION=$(cat Gemfile | grep ruby | grep -oP '\d+\.\d+\.\d')
 echo "Ruby version: $RUBY_VERSION"
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
-popd
 
 # This is really hacky, but necessary to finish the install via a single
 # script script with minimal user interaction
 /bin/bash -i
 gem install bundler
+gem install rails
 bundle install
+popd
 exit
