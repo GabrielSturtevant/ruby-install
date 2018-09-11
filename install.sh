@@ -1,7 +1,7 @@
 #!/bin/bash
 RUBY_VERSION='2.5.1'
 
-pushd $HOME
+pushd $HOME > /dev/null
 sudo apt-get update
 sudo apt-get install -y git
 sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
@@ -25,6 +25,14 @@ rbenv global $RUBY_VERSION
 # TODO(Gabriel): Remove this line
 git config --global http.sslVerify false
 
+# TODO(Kirk): Replace this with production link
 git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.connectors.oracle.git
 
+pushd $HOME/service.connectors.oracle
+
+gem install bundler
+bundle install
+
 . $HOME/.bashrc
+popd
+pwd
