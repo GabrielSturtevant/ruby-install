@@ -18,7 +18,7 @@ git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/r
 
 git clone https://github.com/ianheggie/rbenv-binstubs.git ~/.rbenv/plugins/rbenv-binstubs
 
-. $HOME/.bashrc # Reload bashrc content
+sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
