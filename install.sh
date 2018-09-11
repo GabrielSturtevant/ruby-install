@@ -33,10 +33,10 @@ rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
 
 # This is really hacky, but necessary to finish the install via a single
-# script script with minimal user interaction
+# script with minimal user interaction
 /bin/bash -i
 gem install bundler
 gem install rails
 bundle install
-popd
 exit
+popd +0
