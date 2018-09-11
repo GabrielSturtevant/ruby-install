@@ -28,7 +28,7 @@ git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.c
 
 pushd $HOME/services.connectors.oracle/Backend
 RUBY_VERSION=$(cat Gemfile | grep ruby | egrep -o '\d+\.\d+\.\d')
-echo 'Ruby version: $RUBY_VERSION'
+echo "Ruby version: $RUBY_VERSION"
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
 popd
