@@ -26,7 +26,7 @@ git config --global http.sslVerify false
 # TODO(Kirk): Replace this with production link
 git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.connectors.oracle.git
 
-pushd $HOME/services.connectors.oracle/Backend
+pushd $HOME/services.connectors.oracle/Backend > /dev/null
 RUBY_VERSION=$(cat Gemfile | grep ruby | grep -oP '\d+\.\d+\.\d')
 echo "Ruby version: $RUBY_VERSION"
 rbenv install $RUBY_VERSION
@@ -39,4 +39,4 @@ gem install bundler
 gem install rails
 bundle install
 exit
-popd +0
+popd +0 > /dev/null
