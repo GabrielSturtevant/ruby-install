@@ -21,3 +21,10 @@ git clone https://github.com/ianheggie/rbenv-binstubs.git ~/.rbenv/plugins/rbenv
 
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
+
+# TODO(Gabriel): Remove this line
+git config --global http.sslVerify false
+
+git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.connectors.oracle.git
+
+. $HOME/.bashrc
