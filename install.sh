@@ -1,5 +1,4 @@
 #!/bin/bash
-RUBY_VERSION='2.5.1'
 
 pushd $HOME > /dev/null
 sudo apt-get update
@@ -21,9 +20,6 @@ git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/r
 
 git clone https://github.com/ianheggie/rbenv-binstubs.git ~/.rbenv/plugins/rbenv-binstubs
 
-rbenv install $RUBY_VERSION
-rbenv global $RUBY_VERSION
-
 # TODO(Gabriel): Remove this line
 git config --global http.sslVerify false
 
@@ -31,13 +27,15 @@ git config --global http.sslVerify false
 git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.connectors.oracle.git
 
 pushd $HOME/services.connectors.oracle/Backend
+RUBY_VERSION=$(cat Gemfile | grep ruby | egrep -o '\d+\.\d+\.\d')
+echo 'Ruby version: $RUBY_VERSION'
+rbenv install $RUBY_VERSION
+rbenv global $RUBY_VERSION
+popd
 
+# This is really hacky, but necessary to finish the install via a single
+# script script with minimal user interaction
 /bin/bash -i
-
 gem install bundler
 bundle install
-
 exit
-
-popd
-pwd
