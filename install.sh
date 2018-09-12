@@ -27,7 +27,7 @@ git config --global http.sslVerify false
 git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.connectors.oracle.git
 
 pushd $HOME/services.connectors.oracle/Backend > /dev/null
-RUBY_VERSION=$(cat Gemfile | grep ruby | grep -oP '\d+\.\d+\.\d+')
+RUBY_VERSION=$(cat Gemfile | grep ruby | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
 echo "Ruby version: $RUBY_VERSION"
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
