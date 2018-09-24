@@ -6,6 +6,8 @@ if [ "$UNICORN_INSTALLED" -lt 1 ]; then
 fi
 bundle
 
+mkdir -p shared/pids shared/sockets shared/log
+
 echo Creating config and init files
 # TODO(Gabriel): Update these links to the internal links
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/unicorn.rb >> config/unicorn.rb
