@@ -15,7 +15,7 @@ set -e
 USAGE="Usage: $0 <start|stop|restart|upgrade|rotate|force-stop>"
 
 # app settings
-# USER="deploy"
+USER="gabriel"
 APP_NAME="example"
 APP_ROOT="/home/$USER/example"
 ENV="production"
