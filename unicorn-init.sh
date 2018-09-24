@@ -16,7 +16,7 @@ USAGE="Usage: $0 <start|stop|restart|upgrade|rotate|force-stop>"
 
 # app settings
 USER="deploy"
-APP_NAME="Oracle Connector"
+APP_NAME="example"
 APP_ROOT="/home/$USER/example"
 ENV="production"
 
