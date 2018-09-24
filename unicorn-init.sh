@@ -27,6 +27,7 @@ PID="$APP_ROOT/shared/pids/unicorn.pid"
 OLD_PID="$PID.oldbin"
 
 # make sure the app exists
+echo $APP_ROOT
 cd $APP_ROOT || exit 1
 
 sig () {
