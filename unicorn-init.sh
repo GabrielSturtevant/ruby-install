@@ -31,10 +31,12 @@ echo "App root: $APP_ROOT"
 cd $APP_ROOT || exit 1
 
 sig () {
+    echo "in the sig() function"
   test -s "$PID" && kill -$1 `cat $PID`
 }
 
 oldsig () {
+    echo "in the oldsig() function"
   test -s $OLD_PID && kill -$1 `cat $OLD_PID`
 }
 
