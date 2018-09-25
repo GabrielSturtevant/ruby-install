@@ -1,21 +1,14 @@
-#! /bin/bash
-UNICORN_INSTALLED=$(cat Gemfile | grep "gem 'unicorn'" | wc -l)
-if [ "$UNICORN_INSTALLED" -lt 1 ]; then
-    echo "Adding unicorn to Gemfile"
-    echo "gem 'unicorn'" >> Gemfile
-fi
-bundle
+export NUMBER_OF_CPUS=$( grep -c processor /proc/cpuinfo )
+export APP_NAME="example"
+wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rb >> config/puma.rb
+sed -i "s/workers 2/workers $NUMBER_OF_CPUS/g" config/puma.rb
+pushd ~
+wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma-manager.conf
+wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma.conf
+sed -ri "s/set(.)id apps/set\1id $USER/g" puma.conf
+sudo mv puma* /etc/init/
 
-mkdir -p shared/pids shared/sockets shared/log
+popd
 
-echo Creating config and init files
-# TODO(Gabriel): Update these links to the internal links
-wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/unicorn.rb >> config/unicorn.rb
-wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/unicorn-init.sh | sudo tee /etc/init.d/unicorn_oracle_connector > /dev/null
+echo "/home/$USER/$APP_NAME" | sudo tee -a /etc/puma.conf
 
-echo Updating init file permissions
-sudo chmod 755 /etc/init.d/unicorn_oracle_connector
-sudo update-rc.d unicorn_oracle_connector defaults
-
-
-echo Done. Goodbye
