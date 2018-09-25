@@ -11,4 +11,4 @@ sudo mv puma* /etc/init/
 popd
 
 echo "/home/$USER/$APP_NAME" | sudo tee -a /etc/puma.conf
-
+wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.service | sudo tee /etc/systemd/system/puma.service
