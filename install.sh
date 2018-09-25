@@ -12,3 +12,4 @@ popd
 
 echo "/home/$USER/$APP_NAME" | sudo tee -a /etc/puma.conf
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.service | sudo tee /etc/systemd/system/puma.service
+sudo sed -ire "s/(User|Group)=deployer/\1=$USER/g" -ire "s/\/deployer\/app/$USER\/$APP_NAME/g" /etc/systemd/system/puma.service
