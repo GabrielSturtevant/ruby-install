@@ -15,4 +15,6 @@ wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/maste
 sudo sed -ir "s/deployer/$USER/g" /etc/systemd/system/puma.service
 sudo sed -ir "s/app/example/g" /etc/systemd/system/puma.service
 mkdir -p shared/pids shared/sockets shared/log
+sudo systemctl start puma
+systemctl status puma
 # cat /etc/systemd/system/puma.service
