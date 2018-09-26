@@ -1,4 +1,5 @@
 #!/bin/bash
+export APP_NAME="example"
 sudo apt-get install nginx -y
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/nginx-config > nginx-config
 sed -ir "s/deploy/$USER/g" nginx-config
