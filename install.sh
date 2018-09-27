@@ -7,6 +7,7 @@ export NUMBER_OF_CPUS=$( grep -c processor /proc/cpuinfo )
 # If You uncomment the section that pulls the application in from stash the
 # application name will be scraped from the package.json file in the rails app
 export APPLICATION_NAME="foobar"
+export APPLICATION_DIRECTORY="$HOME/$APPLICATION_NAME"
 export RUBY_VERSION="2.5.1"
 
 # Using pushd to navigate directories so user shell stays where they were durring execution
@@ -67,11 +68,8 @@ bundle install
 # Exit the hacky interactive terminal
 exit
 
-echo "------------------------------------------------------------------------------------------------------------------------------"
-pwd
-echo "------------------------------------------------------------------------------------------------------------------------------"
-exit 1
 # PUMA install/configuration
+pushd $APPLICATION_DIRECTORY
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rb >> config/puma.rb
 sed -i "s/workers 2/workers $NUMBER_OF_CPUS/g" config/puma.rb
 pushd ~ > /dev/null
