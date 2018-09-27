@@ -40,7 +40,7 @@ rbenv global $RUBY_VERSION
 # The gem executable is installed in the previous step
 # /bin/bash -i
 bash
-gem install bundler
+gem install bundler || exit 1; exit 1
 gem install rails
 bundle install
 exit
