@@ -61,7 +61,7 @@ gem install bundle
 gem install rails
 
 # TODO(TechOps): Delete this line when example application is no longer needed.
-rails new $APPLICATION_NAME && pushd $HOME/$APPLICATION_NAME
+rails new $APPLICATION_NAME && pushd $APPLICATION_DIRECTORY
 mkdir -p shared/pids shared/sockets shared/log
 
 bundle install
@@ -69,8 +69,8 @@ bundle install
 exit
 
 # PUMA install/configuration
-pushd $APPLICATION_DIRECTORY
-wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rb >> config/puma.rb
+pushd $APPLICATION_DIRECTORY > /dev/null
+wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rbi > config/puma.rb
 sed -i "s/workers 2/workers $NUMBER_OF_CPUS/g" config/puma.rb
 pushd ~ > /dev/null
 wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma-manager.conf >dev null
