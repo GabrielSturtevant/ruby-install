@@ -34,13 +34,13 @@ rbenv global $RUBY_VERSION
 
 # This is really hacky, but necessary to finish the install via a single
 # script with minimal user interaction
-/bin/bash -i
+# /bin/bash -i
 gem install bundler
 gem install rails
 bundle install
-exit
+# exit
 popd +0 > /dev/null
-
+echo "Did it work?"
 exit
 
 # PUMA install/configuration
