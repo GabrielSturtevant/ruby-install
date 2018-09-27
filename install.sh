@@ -1,11 +1,15 @@
 #!/bin/bash
 
+# Script Variables
+
+
 pushd $HOME > /dev/null
 sudo apt-get update
 sudo apt-get install -y git
 sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 sudo apt-get install -y libpq-dev
 sudo apt-get install -y nodejs
+sudo apt-get install -y nginx
 
 git clone git://github.com/sstephenson/rbenv.git .rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
@@ -28,20 +32,19 @@ git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.c
 
 pushd $HOME/services.connectors.oracle/Backend > /dev/null
 RUBY_VERSION=$(cat Gemfile | grep ruby | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-echo "Ruby version: $RUBY_VERSION"
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
 
 # This is really hacky, but necessary to finish the install via a single
 # script with minimal user interaction
+# The gem executable is installed in the previous step
 # /bin/bash -i
+bash
 gem install bundler
 gem install rails
 bundle install
-# exit
-popd +0 > /dev/null
-echo "Did it work?"
 exit
+popd +0 > /dev/null
 
 # PUMA install/configuration
 export NUMBER_OF_CPUS=$( grep -c processor /proc/cpuinfo )
@@ -65,7 +68,6 @@ systemctl status puma
 
 # NGINX Install/Configure
 export APP_NAME="example"
-sudo apt-get install nginx -y
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/nginx-config > nginx-config
 sed -ir "s/deploy/$USER/g" nginx-config
 sed -ir "s/appname/$APP_NAME/g" nginx-config
