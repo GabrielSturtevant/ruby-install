@@ -67,6 +67,10 @@ bundle install
 # Exit the hacky interactive terminal
 exit
 
+echo "------------------------------------------------------------------------------------------------------------------------------"
+pwd
+echo "------------------------------------------------------------------------------------------------------------------------------"
+exit 1
 # PUMA install/configuration
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rb >> config/puma.rb
 sed -i "s/workers 2/workers $NUMBER_OF_CPUS/g" config/puma.rb
@@ -82,7 +86,6 @@ sudo sed -ir "s/deployer/$USER/g" /etc/systemd/system/puma.service
 sudo sed -ir "s/app/example/g" /etc/systemd/system/puma.service
 mkdir -p shared/pids shared/sockets shared/log
 sudo systemctl start puma
-systemctl status puma
 
 
 # NGINX Install/Configure
