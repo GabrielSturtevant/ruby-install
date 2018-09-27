@@ -80,10 +80,8 @@ popd > /dev/null
 echo "/home/$USER/$APPLICATION_NAME" | sudo tee -a /etc/puma.conf
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.service | sudo tee /etc/systemd/system/puma.service > /dev/null
 sudo sed -ir "s/deployer/$USER/g" /etc/systemd/system/puma.service
-sudo sed -ir "s/app/example/g" /etc/systemd/system/puma.service
+sudo sed -ir "s/app/$APPLICATION_NAME/g" /etc/systemd/system/puma.service
 mkdir -p shared/pids shared/sockets shared/log
-sudo systemctl start puma
-
 
 # NGINX Install/Configure
 export APPLICATION_NAME="example"
