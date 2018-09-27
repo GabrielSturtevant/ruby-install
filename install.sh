@@ -70,7 +70,7 @@ exit
 
 # PUMA install/configuration
 pushd $APPLICATION_DIRECTORY > /dev/null
-wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rbi > config/puma.rb
+wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rb > config/puma.rb
 sed -i "s/workers 2/workers $NUMBER_OF_CPUS/g" config/puma.rb
 pushd ~ > /dev/null
 wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma-manager.conf >dev null
@@ -92,3 +92,4 @@ wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/maste
 sed -ir "s/deploy/$USER/g" nginx-config
 sed -ir "s/appname/$APPLICATION_NAME/g" nginx-config
 sudo mv nginx-config /etc/nginx/sites-available/default
+popd +0 > /dev/null
