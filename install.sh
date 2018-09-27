@@ -69,7 +69,6 @@ bundle install
 exit
 
 # PUMA install/configuration
-pushd $APPLICATION_DIRECTORY > /dev/null
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rb > $APPLICATION_DIRECTORY/config/puma.rb
 sed -i "s/workers 2/workers $NUMBER_OF_CPUS/g" config/puma.rb
 pushd ~ > /dev/null
