@@ -2,10 +2,6 @@
 
 # Script Variables
 export NUMBER_OF_CPUS=$( grep -c processor /proc/cpuinfo )
-
-# TODO(TechOps): Only use the following variables for the example application
-# If You uncomment the section that pulls the application in from stash the
-# application name will be scraped from the package.json file in the rails app
 export APPLICATION_NAME="foobar"
 export APPLICATION_DIRECTORY="$HOME/$APPLICATION_NAME"
 export RUBY_VERSION="2.5.1"
@@ -20,6 +16,7 @@ sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 sudo apt-get install -y libpq-dev
 sudo apt-get install -y nodejs
 sudo apt-get install -y nginx
+
 # TODO(TechOps): The following is only necessary for the ecample application
 sudo apt-get install -y libsqlite3-dev
 
@@ -33,22 +30,6 @@ echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
 export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash
 git clone https://github.com/ianheggie/rbenv-binstubs.git ~/.rbenv/plugins/rbenv-binstubs
-
-# ------------------------------------------------------------
-# Following section is to download the production application
-# -----------------------------------------------------------
-# Block Comment Start
-: << 'END'
-# This line allows us to pull items in from Stash
-git config --global http.sslVerify false
-# TODO(TechOps): Replace this with appropriate link
-git clone https://Gabriel.Sturtevant@stash.blackline.corp/scm/fcsconn/services.connectors.oracle.git
-
-pushd $HOME/services.connectors.oracle/Backend > /dev/null
-RUBY_VERSION=$(cat Gemfile | grep ruby | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
-APPLICATION_NAME=$(grep name package.json | sed -r 's/ *"name": "(.+),/\1/g"')
-END
-# Block Comment End
 
 rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
@@ -88,7 +69,4 @@ sed -ir "s/deploy/$USER/g" nginx-config
 sed -ir "s/appname/$APPLICATION_NAME/g" nginx-config
 sudo mv nginx-config /etc/nginx/sites-available/default
 popd +0 > /dev/null
-
-echo "App name: $APPLICATON_DIRECTORY"
-echo "App name: $APPLICATON_NAME"
-echo "Core Count: $NUMBER_OF_CPUS"
+sudo reboot 0
