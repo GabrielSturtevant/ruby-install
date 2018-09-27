@@ -19,6 +19,8 @@ sudo apt-get install -y libssl-dev libreadline-dev zlib1g-dev
 sudo apt-get install -y libpq-dev
 sudo apt-get install -y nodejs
 sudo apt-get install -y nginx
+# TODO(TechOps): The following is only necessary for the ecample application
+sudo apt-get install -y libsqlite3-dev
 
 # Install necessary Ruby packages
 git clone git://github.com/sstephenson/rbenv.git .rbenv
@@ -51,10 +53,9 @@ rbenv install $RUBY_VERSION
 rbenv global $RUBY_VERSION
 
 # This is really hacky, but necessary to finish the install via a single script with minimal user interaction
+# Gem can only be executed from the interactive shell, unless you want to break this up into multple scripts r
 # Start an interactive shell
 /bin/bash -i
-
-# Gem can only be executed from the interactive shell, unless you want to break this up into multple scripts r
 gem install bundle
 gem install rails
 
