@@ -88,7 +88,4 @@ sed -ir "s/deploy/$USER/g" nginx-config
 sed -ir "s/appname/$APPLICATION_NAME/g" nginx-config
 sudo mv nginx-config /etc/nginx/sites-available/default
 popd +0 > /dev/null
-
-echo "App name: $APPLICATON_DIRECTORY"
-echo "App name: $APPLICATON_NAME"
-echo "Core Count: $NUMBER_OF_CPUS"
+sudo reboot 0
