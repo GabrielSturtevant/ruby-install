@@ -70,7 +70,7 @@ exit
 
 # PUMA install/configuration
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rb > $APPLICATION_DIRECTORY/config/puma.rb
-sed -i "s/workers 2/workers $NUMBER_OF_CPUS/g" config/puma.rb
+sed -i "s/workers 2/workers $NUMBER_OF_CPUS/g" $APPLICATION_DIRECTORY/config/puma.rb
 pushd ~ > /dev/null
 wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma-manager.conf >dev null
 wget https://raw.githubusercontent.com/puma/puma/master/tools/jungle/upstart/puma.conf > /dev/null
