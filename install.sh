@@ -61,11 +61,11 @@ gem install rails
 
 # TODO(TechOps): Delete this line when example application is no longer needed.
 rails new $APPLICATION_NAME && pushd $HOME/$APPLICATION_NAME
+mkdir -p shared/pids shared/sockets shared/log
 
 bundle install
 # Exit the hacky interactive terminal
 exit
-
 
 # PUMA install/configuration
 wget -qO- https://raw.githubusercontent.com/GabrielSturtevant/ruby-install/master/puma.rb >> config/puma.rb
